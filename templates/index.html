@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penalty Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Penalty Form</h1>
+        <form action="/submit" method="post">
+            <div class="input-field">
+                <input id="static" type="number" name="static" required>
+                <label for="static">Статик</label>
+            </div>
+            <div class="input-field">
+                <input id="game_name" type="text" name="game_name" required>
+                <label for="game_name">Имя игровое</label>
+            </div>
+            <div class="input-field">
+                <input id="game_surname" type="text" name="game_surname" required>
+                <label for="game_surname">Фамилия игровое</label>
+            </div>
+            <div class="input-field">
+                <select name="penalty_type" required>
+                    <option value="" disabled selected>Выберите тип взыскания</option>
+                    <option value="strict">Строгий</option>
+                    <option value="warning">Замечание</option>
+                </select>
+                <label>Тип взыскания</label>
+            </div>
+            <div class="input-field">
+                <input id="issuer" type="text" name="issuer" required>
+                <label for="issuer">Человек который выдал взыскание</label>
+            </div>
+            <div class="input-field">
+                <input id="article" type="text" name="article" required>
+                <label for="article">Статья по которой была выдана взыскание</label>
+            </div>
+            <div class="input-field">
+                <input id="date" type="date" name="date" required>
+                <label for="date">Дата</label>
+            </div>
+            <p>
+                <label>
+                    <input type="checkbox" name="work_off" />
+                    <span>Отработка</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input type="checkbox" name="issued" />
+                    <span>Взыскание выдано</span>
+                </label>
+            </p>
+            <div class="input-field">
+                <select name="warnings_count" multiple>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <label>Количество замечаний</label>
+            </div>
+            <div class="input-field">
+                <select name="reprimands_count" multiple>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <label>Количество выговоров</label>
+            </div>
+            <p>
+                <label>
+                    <input name="penalty_worked_off" type="radio" value="yes" />
+                    <span>Взыскание отработано</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="penalty_worked_off" type="radio" value="no" checked />
+                    <span>Взыскание не отработано</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="employee_dismissed" type="radio" value="yes" />
+                    <span>Уволен</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input name="employee_dismissed" type="radio" value="no" checked />
+                    <span>Не уволен</span>
+                </label>
+            </p>
+            <button class="btn waves-effect waves-light" type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var selects = document.querySelectorAll('select');
+            M.FormSelect.init(selects);
+        });
+    </script>
+</body>
+</html>
+

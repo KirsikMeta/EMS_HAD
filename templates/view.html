@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр штрафов</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Поиск штрафов по статическому значению</h1>
+    <form method="post">
+        <label for="static">Статическое значение:</label>
+        <input type="text" id="static" name="static" value="{{ static_value or '' }}">
+        <button type="submit">Искать</button>
+    </form>
+    </div>
+    {% if results %}
+    <div class="container">
+        <h2>Результаты поиска:</h2>
+    <table border="1">
+        <tr>
+            <th>Статическое значение</th>
+            <th>Имя игры</th>
+            <th>Фамилия игрока</th>
+            <th>Тип штрафа</th>
+            <th>Выдавший штраф</th>
+            <th>Статья</th>
+            <th>Дата</th>
+            <th>Отработано</th>
+            <th>Выдано</th>
+            <th>Количество предупреждений</th>
+            <th>Количество выговоров</th>
+            <th>Штраф отработан</th>
+            <th>Сотрудник уволен</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result['static'] }}</td>
+            <td>{{ result['game_name'] }}</td>
+            <td>{{ result['game_surname'] }}</td>
+            <td>{{ result['penalty_type'] }}</td>
+            <td>{{ result['issuer'] }}</td>
+            <td>{{ result['article'] }}</td>
+            <td>{{ result['date'] }}</td>
+            <td>{{ result['work_off'] }}</td>
+            <td>{{ result['issued'] }}</td>
+            <td>{{ result['warnings_count'] }}</td>
+            <td>{{ result['reprimands_count'] }}</td>
+            <td>{{ result['penalty_worked_off'] }}</td>
+            <td>{{ result['employee_dismissed'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    {% endif %}
+
+    <div class="container">
+        <h2>Все штрафы:</h2>
+    <table border="1">
+        <tr>
+            <th>Статическое значение</th>
+            <th>Имя игры</th>
+            <th>Фамилия игрока</th>
+            <th>Тип штрафа</th>
+            <th>Выдавший штраф</th>
+            <th>Статья</th>
+            <th>Дата</th>
+            <th>Отработано</th>
+            <th>Выдано</th>
+            <th>Количество предупреждений</th>
+            <th>Количество выговоров</th>
+            <th>Штраф отработан</th>
+            <th>Сотрудник уволен</th>
+        </tr>
+        {% for penalty in all_penalties %}
+        <tr>
+            <td>{{ penalty['static'] }}</td>
+            <td>{{ penalty['game_name'] }}</td>
+            <td>{{ penalty['game_surname'] }}</td>
+            <td>{{ penalty['penalty_type'] }}</td>
+            <td>{{ penalty['issuer'] }}</td>
+            <td>{{ penalty['article'] }}</td>
+            <td>{{ penalty['date'] }}</td>
+            <td>{{ penalty['work_off'] }}</td>
+            <td>{{ penalty['issued'] }}</td>
+            <td>{{ penalty['warnings_count'] }}</td>
+            <td>{{ penalty['reprimands_count'] }}</td>
+            <td>{{ penalty['penalty_worked_off'] }}</td>
+            <td>{{ penalty['employee_dismissed'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+</body>
+</html>
